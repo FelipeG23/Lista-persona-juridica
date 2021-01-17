@@ -1,16 +1,17 @@
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ListaEvaluacionesComponent } from './component/lista-evaluaciones/lista-evaluaciones.component';
 import { CambiocontraseniaComponent } from './component/logeado/cambiocontrasenia/cambiocontrasenia.component';
-import { RestablecerContrasenaComponent } from './component/logeado/restablecer-contrasena/restablecer-contrasena.component';
 
 const routes: Routes = [
   {
-    path: 'solicitud',
+    path: '',
     component: CambiocontraseniaComponent
   },
   {
-    path: 'restablecer',
-    component: RestablecerContrasenaComponent
+    path: 'listaEvaluaciones/:id',
+    component: ListaEvaluacionesComponent
   },
 ];
 

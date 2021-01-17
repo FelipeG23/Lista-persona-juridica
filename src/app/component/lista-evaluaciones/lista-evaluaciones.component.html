@@ -1,0 +1,88 @@
+<div class="container">
+
+  <mat-card class="container mt-5 card">
+  <div class="container">
+    <div class="mt-4">
+      <h1> Lista evaluaciones</h1>
+    </div>
+
+  <div class="container mat-elevation-z8 mt-2">
+    <ng-container *ngIf="!dataTerceros">
+      <br>
+      <mat-spinner style="margin: auto" [diameter]="60"></mat-spinner>
+      <br>
+    </ng-container>
+    <table mat-table [dataSource]="dataSource" *ngIf="dataTerceros">
+
+
+      <!-- userProviderNit Column -->
+      <ng-container matColumnDef="evalNit">
+        <th class="text-center" mat-header-cell *matHeaderCellDef> Id tercero </th>
+        <td class="text-center" mat-cell *matCellDef="let element"> {{element.evalNit}} </td>
+      </ng-container>
+
+       <!-- nombre Column -->
+       <ng-container matColumnDef="nombre">
+        <th class="text-center" mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td class="text-center" mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+      </ng-container>
+
+      <!-- tipoTercero Column -->
+      <ng-container matColumnDef="tipoTercero">
+        <th class="text-center" mat-header-cell *matHeaderCellDef> Tipo tercero </th>
+        <td class="text-center" mat-cell *matCellDef="let element"> {{element.tipoPersona}} </td>
+      </ng-container>
+
+       <!-- fecha Column -->
+       <ng-container matColumnDef="fecha">
+        <th class="text-center" mat-header-cell *matHeaderCellDef> Fecha </th>
+        <td class="text-center" mat-cell *matCellDef="let element"> {{element.userProviderFecha}} </td>
+      </ng-container>
+
+       <!-- evaluationData Column -->
+       <ng-container matColumnDef="evaluationData">
+        <th class="text-center" mat-header-cell *matHeaderCellDef> Evaluación </th>
+        <td class="text-center" mat-cell *matCellDef="let element">
+          <p type="button" (click)="openDialogListaEvaluaciones(element)" mat-raised-button class="pt-2" style="background-color: rgba(255, 255, 255, 0); color: rgba(255, 255, 255, 0); cursor: pointer;">
+            <i class="material-icons md-18" style="color: black;">assignment</i>
+          </p>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <!--
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    -->
+
+    <mat-paginator #paginatorCitas [pageSizeOptions]="pageSizeOptions"
+                   [length]="length"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)=setPageSizeOptions($event)
+                   showFirstLastButtons>></mat-paginator>
+  </div>
+  </div>
+  <br> <br>
+
+  <div class="row justify-content-center text-right mb-4">
+    <div class="col-sm-4 col-md-12 col-lg-12">
+      <button mat-raised-button class="buttonCA-second mr-1" type="button" (click)="close()">Atras</button>
+    </div>
+    <!--
+    <div class="col-sm-4 col-md-12 col-lg-3">
+      <button mat-raised-button class="buttonCA-second mr-4" type="button" (click)="limpiar()">LIMPIAR</button>
+    </div>
+    <div class="col-sm-4 col-md-12 col-lg-3">
+      <button mat-raised-button class="buttonCA-second" type="button"
+        (click)="openDialogInfoConvenio()">CONVENIOS</button>
+    </div>
+    <div class="col-sm-4 col-md-12 col-lg-3">
+      <button mat-raised-button class="buttonCA primary" [disabled]="registrarAuto.invalid">GUARDAR</button>
+    </div> -->
+  </div>
+
+  </mat-card>
+  </div>

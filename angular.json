@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "fundacion"
+  "defaultProject": "fundacion",
+  "cli": {
+    "analytics": false
+  }
 }

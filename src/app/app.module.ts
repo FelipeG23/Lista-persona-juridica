@@ -19,14 +19,25 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { CambiocontraseniaComponent } from './component/logeado/cambiocontrasenia/cambiocontrasenia.component';
-import { RestablecerContrasenaComponent } from './component/logeado/restablecer-contrasena/restablecer-contrasena.component';
 import { HttpClientModule } from '@angular/common/http';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatChipsModule } from '@angular/material/chips';
+import { EvaluacionProveedorComponent } from './component/logeado/evaluacion-proveedor/evaluacion-proveedor.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ListaEvaluacionesComponent } from './component/lista-evaluaciones/lista-evaluaciones.component';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { DatosEvaluacionComponent } from './component/datos-evaluacion/datos-evaluacion.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     CambiocontraseniaComponent,
-    RestablecerContrasenaComponent,
+    EvaluacionProveedorComponent,
+    ListaEvaluacionesComponent,
+    DatosEvaluacionComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,10 +61,19 @@ import { HttpClientModule } from '@angular/common/http';
     MatFormFieldModule,
     MatNativeDateModule,
     MatRadioModule,
-    HttpClientModule
-
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatChipsModule,
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,28 +1,32 @@
-import { ListaEvaluacionesComponent } from './../../lista-evaluaciones/lista-evaluaciones.component';
-import { PasswordService } from './../../../service/changePassword/password.service';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import swal from 'sweetalert';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ViewChild } from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
-import { EvaluacionProveedorComponent } from '../evaluacion-proveedor/evaluacion-proveedor.component';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-
+import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { PasswordService } from 'src/app/service/changePassword/password.service';
+import { EvaluacionProveedorComponent } from '../logeado/evaluacion-proveedor/evaluacion-proveedor.component';
+import swal from 'sweetalert';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DatosEvaluacionComponent } from '../datos-evaluacion/datos-evaluacion.component';
 
 @Component({
-  selector: 'app-cambiocontrasenia',
-  templateUrl: './cambiocontrasenia.component.html',
-  styleUrls: ['./cambiocontrasenia.component.less']
+  selector: 'app-lista-evaluaciones',
+  templateUrl: './lista-evaluaciones.component.html',
+  styleUrls: ['./lista-evaluaciones.component.less']
 })
-export class CambiocontraseniaComponent implements OnInit {
-  displayedColumns: string[] = ['userProviderNit', 'userProviderName', 'UserProviderLastname', 'providertypeId', 'userProviderEmail', 'symbol', 'evaluationData'];
+export class ListaEvaluacionesComponent implements OnInit {
+
+  displayedColumns: string[] = ['evalNit', 'nombre', 'tipoTercero', 'fecha', 'evaluationData'];
   dataTerceros: any;
   dataSource: MatTableDataSource<any>;
   pageSizeOptions: number[] = [5, 10, 20];
   length = 800;
   pageSize = 5;
+  identificacion: any;
+  dataTerceroPN: any;
+  dataTerceroPJ: any;
+  detalleEvaluacion: any;
+
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -30,26 +34,72 @@ export class CambiocontraseniaComponent implements OnInit {
   constructor(public dialog: MatDialog,
               public serviceTerceros: PasswordService,
               private changeDetectorRefs: ChangeDetectorRef,
-              private router: Router) {}
+              public dialogRef: MatDialogRef<ListaEvaluacionesComponent>,
+              private _route: ActivatedRoute,
+              private router: Router
+              ) {}
 
 
     ngOnInit() {
 
 
-    this.serviceTerceros.allPaginate(1).subscribe(
+    this.identificacion =  this._route.snapshot.paramMap.get('id');
+
+
+    this.serviceTerceros.datosDataPJ(this.identificacion).subscribe(
       (data: any) => {
        // this.spinnerService.hide();
-        if (data) {
-          console.log(data.listaUsuarios);
-          this.dataTerceros = data.listaUsuarios;
+          this.dataTerceroPJ = data;
+           console.log(data);
+
+
+      }, err => {
+        // this.spinnerService.hide();
+        this.dataTerceroPJ = null;
+
+      });
+
+      this.serviceTerceros.datosDataPN(this.identificacion).subscribe(
+        (data: any) => {
+         // this.spinnerService.hide();
+            this.dataTerceroPN = data;
+            console.log(data);
+
+        }, err => {
+          // this.spinnerService.hide();
+          this.dataTerceroPN = null;
+
+        });
+
+    this.serviceTerceros.getEvaluations(this.identificacion ).subscribe(
+      (data: any) => {
+       // this.spinnerService.hide();
+          console.log(data);
+          this.dataTerceros = data;
           this.dataSource = new MatTableDataSource<any>(this.dataTerceros);
           this.dataSource.paginator = this.paginator;
 
+        if (this.dataTerceroPJ === null) {
+
+          for (let index = 0; index < this.dataTerceros.length; index++) {
+            const element = this.dataTerceros[index];
+
+            element.nombre = this.dataTerceroPN.datosPNApellidosNombres;
+            element.tipoPersona = this.dataTerceroPN.datosPNId;
+          }
+
+
         } else {
 
+          for (let index = 0; index < this.dataTerceros.length; index++) {
+            const element = this.dataTerceros[index];
 
+           element.nombre = this.dataTerceroPN.datosPNApellidosNombres;
+
+          }
 
         }
+
       }, err => {
         // this.spinnerService.hide();
         swal({
@@ -61,11 +111,14 @@ export class CambiocontraseniaComponent implements OnInit {
 
 
 
+      console.log("Test", this.dataTerceros );
+
+
+
   }
 
   openDialogAutorizacion(datoCita){
 
-    console.log(datoCita);
 
     const dialogRef = this.dialog.open(EvaluacionProveedorComponent, {
       data: { datoCita },
@@ -77,7 +130,22 @@ export class CambiocontraseniaComponent implements OnInit {
 
   openDialogListaEvaluaciones(datoCita){
 
-    this.router.navigate(['listaEvaluaciones', datoCita.userProviderNit]);
+
+    // datoCita.nombre = this.dataTerceroPN.datosPNApellidosNombres;
+
+
+    const dialogRef = this.dialog.open(DatosEvaluacionComponent, {
+      data: { datoCita },
+      height: '800px',
+      width: '1200px',
+      disableClose: true
+    });
+  }
+
+  close() {
+
+    this.router.navigate(['']);
+
 
   }
 

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  url: 'http://52.247.56.140:8080/'
+  url: 'http://52.247.56.140:8080/',
+  login: 'http://172.27.42.132:10113'
 };
 
 /*

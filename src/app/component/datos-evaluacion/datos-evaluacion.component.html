@@ -1,0 +1,275 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-1 offset-sm-11">
+      <!-- <mat-icon (click)="close()">close</mat-icon> -->
+    </div>
+  </div>
+</div>
+<div class="container">
+  <form novalidate (ngSubmit)="onSubmit()" [formGroup]="registrarAuto" #myform="ngForm">
+    <div class="row">
+      <mat-card>
+        <div class="row">
+          <div class="col-sm-11">
+            <h2 mat-dialog-title>Resultado evaluación</h2>
+          </div>
+          <div (click)="close()" style="cursor: default" class="col-sm-1">
+            <mat-icon>close</mat-icon>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="container row">
+              <div class="col-sm-12 col-md-12 col-lg-6">
+                <mat-card>
+                  <p> <strong> Id tercero </strong> </p>
+                  <input matInput disabled placeholder="" [(ngModel)]='detalleCita.evalNit' type="text" formControlName="idTercero"/>
+                </mat-card>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-6">
+                <mat-card>
+                  <p> <strong> Nombre </strong> </p>
+                  <input matInput disabled placeholder="" [(ngModel)]='detalleCita.nombre' type="text" formControlName="nombre"/>
+                </mat-card>
+              </div>
+
+              <div class="col-sm-12 col-md-12 col-lg-6 mt-2">
+                <mat-card>
+                  <p> <strong> Tipo Tercero </strong> </p>
+                  <input matInput disabled placeholder="" [(ngModel)]='detalleCita.tipoPersona' type="text" formControlName="tipoTerce"/>
+                </mat-card>
+              </div>
+
+              <div class="col-sm-12 col-md-12 col-lg-6 mt-2">
+                <mat-card>
+                  <p> <strong> Descripción </strong> </p>
+                  <input matInput disabled placeholder="" [(ngModel)]='detalleCita.evalDescripcion' type="text" formControlName="descripcion"/>
+                </mat-card>
+              </div>
+
+              <div class="col-sm-12 col-md-12 col-lg-12 mt-2">
+                <mat-card>
+                  <div class="row">
+                    <div class="colum col-lg-2">
+                      <div>
+                        <P style="font-size: 16px;"> <strong>  CRITERIO </strong> </P>
+                      </div>
+                      <div class="" style="">
+                        <P style="font-size: 14px;" class="pt-4"> <strong> Cumplimiento  </strong> </P>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-8">
+                      <div class="text-center">
+                        <P style="font-size: 16px;"> <strong> PREGUNTA </strong> </P>
+                      </div>
+                      <div class=" mt-3">
+                        <p style="font-size: 12px;"> ¿Se cumplieron los tiempos de entrega de bienes o la prestación del servicios ofertados por el tercero? </p>
+                      </div>
+                      <div class="mt-2">
+                        <p style="font-size: 12px;"> ¿Se entregan las cantidades solicitadas? </p>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-2">
+                      <div class="text-center">
+                        <P style="font-size: 16px;"> <strong> CALIFICACIÓN  </strong> </P>
+                      </div>
+                      <div class="text-center">
+                        <div class=" mt-2">
+                          <input matInput disabled placeholder="" [(ngModel)]='detalleCita.evalCumplimiento1' type="text" formControlName="evalCumplimiento1"/>
+                         </div>
+                      </div>
+                      <div class="text-center">
+                        <div class=" mt-2">
+                          <input matInput disabled placeholder="" [(ngModel)]='detalleCita.evalCumplimiento2' type="text" formControlName="evalCumplimiento2"/>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+
+
+              <div class="col-sm-12 col-md-12 col-lg-12 mt-2">
+                <mat-card>
+                  <div class="row">
+                    <div class="colum col-lg-2">
+                      <div class="mt-2">
+                        <P style="font-size: 14px;" class="pt-4"> <strong> Calidad  </strong> </P>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-8">
+                      <div class=" mt-3">
+                        <p style="font-size: 12px;"> ¿El Bien o servicio cumple con los parametros tecnicos y Normativos? </p>
+                      </div>
+                      <div class="mt-3">
+                        <p style="font-size: 12px;"> ¿El bien o servicio cumple con las especificaciones y requisitos pactados en el momento de entrega? </p>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-2 ">
+                      <div class="text-center">
+                        <div class=" mt-2">
+                          <input matInput disabled placeholder="" [(ngModel)]='detalleCita.evalCalidad1' type="text" formControlName="evalCalidad1"/>
+                         </div>
+                      </div>
+                      <div class="text-center">
+                        <div class=" mt-4">
+                          <input matInput disabled placeholder="" [(ngModel)]='detalleCita.evalCalidad2' type="text" formControlName="evalCalidad2"/>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+
+              <div class="col-sm-12 col-md-12 col-lg-12 mt-2">
+                <mat-card>
+                  <div class="row">
+                    <div class="colum col-lg-2">
+                      <div class="mt-2">
+                        <P style="font-size: 14px;" class="pt-4"> <strong> Acompañamiento  </strong> </P>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-8">
+                      <div class=" mt-3">
+                        <p style="font-size: 12px;"> ¿Se han presentado reclamaciones al tercero en calidad o gestión? </p>
+                      </div>
+                      <div class="mt-3">
+                        <p style="font-size: 12px;"> ¿El producto o servicio cuenta con garantias? </p>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-2">
+                      <div class="text-center">
+                        <div class=" mt-2">
+                          <input matInput disabled placeholder="" [(ngModel)]='detalleCita.evalAcompana1' type="text" formControlName="evalAcompana1"/>
+                         </div>
+                      </div>
+                      <div class="text-center">
+                        <div class=" mt-4">
+                          <input matInput disabled placeholder="" [(ngModel)]='detalleCita.evalAcompana2' type="text" formControlName="evalAcompana2"/>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+
+              <div class="col-sm-12 col-md-12 col-lg-12 mt-2">
+                <mat-card>
+                  <div class="row">
+                    <div class="colum col-lg-2">
+                      <div class="" style="margin-top: 100px;">
+                        <P style="font-size: 14px;" class="pt-4"> <strong> Administrativos  </strong> </P>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-8">
+                      <div class=" mt-3">
+                        <p style="font-size: 12px;"> ¿El contrato es suscrito en el tiempo pactado ? </p>
+                      </div>
+                      <div class="mt-3">
+                        <p style="font-size: 12px;"> ¿Las facturas son radicadas en el tiempo indicado con las condiciones y soportes requeridos ? </p>
+                      </div>
+                      <div class="mt-3">
+                        <p style="font-size: 12px;"> ¿En caso de contar con personal de manera temporal o permanente el tercero demuestra el pago de las obligaciones laborales con sus empleados? </p>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-2">
+                      <div class="text-center">
+                        <div class=" mt-2">
+                          <input matInput disabled placeholder="" [(ngModel)]='detalleCita.evalAdmon1' type="text" formControlName="evalAdmon1"/>
+                         </div>
+                      </div>
+                      <div class="text-center">
+                        <div class=" mt-4">
+                          <input matInput disabled placeholder="" [(ngModel)]='detalleCita.evalAdmon2' type="text" formControlName="evalAdmon2"/>
+                         </div>
+                      </div>
+                      <div class="text-center">
+                        <div class=" mt-4">
+                          <input matInput disabled placeholder="" [(ngModel)]='detalleCita.evalAdmon3' type="text" formControlName="evalAdmon3"/>
+                         </div>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-2">
+
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-10">
+                      <p> <strong> Obervaciones </strong> </p>
+                      <input matInput disabled placeholder="" [(ngModel)]='detalleCita.evalAdmObserva' type="text" formControlName="evalAdmObserva"/>
+                    </div>
+                    <div class="colum col-lg-2">
+
+                    </div>
+                    <div class="colum col-lg-8">
+                      <div class=" mt-4">
+                        <p style="font-size: 12px;"> Recomendaria mantener relaciones contractuales con el prveedor evaluado ?  </p>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-2">
+                      <div class=" mt-2 text-center">
+                        <input matInput disabled placeholder="" [(ngModel)]='detalleCita.evalAdmRecomienda' type="text" formControlName="evalAdmRecomienda"/>
+                       </div>
+                    </div>
+
+                  </div>
+                </mat-card>
+              </div>
+
+
+              <div class="col-sm-12 col-md-12 col-lg-12 mt-2">
+                <mat-card>
+                  <div class="text-center">
+                    <p> <strong> Datos de quien evaluó </strong> </p>
+                  </div>
+                  <div class="row">
+                    <div class="colum col-lg-2">
+                      <div class="" style="margin-top: 30px;" class="text-center">
+                        <P style="font-size: 14px;" class="pt-4"> <strong> FSFB  </strong> </P>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-9">
+                      <div class="">
+                        <p> <strong> Nombre: </strong> </p>
+                        <input matInput disabled placeholder="" [(ngModel)]='detalleCita.evalFsfbNombre' type="text" formControlName="evalFsfbNombre"/>
+                      </div>
+                      <div class="mt-2">
+                        <p> <strong>Cargo:</strong> </p>
+                        <input matInput disabled placeholder="" [(ngModel)]='detalleCita.evalFsfbCargo' type="text" formControlName="evalFsfbCargo"/>
+                      </div>
+                      <br>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+
+            </div>
+          </div>
+
+          <br>  <br>
+
+        <div class="row justify-content-center text-right mb-4">
+          <div class="col-sm-4 col-md-12 col-lg-12">
+
+            <!--
+            <button mat-raised-button class="buttonCA-second mr-1" type="button" (click)="close()">CANCELAR</button>
+
+            <button mat-raised-button class="buttonCA primary" [disabled]="registrarAuto.invalid">GUARDAR</button>
+            -->
+          </div>
+          <!--
+          <div class="col-sm-4 col-md-12 col-lg-3">
+            <button mat-raised-button class="buttonCA-second mr-4" type="button" (click)="limpiar()">LIMPIAR</button>
+          </div>
+          <div class="col-sm-4 col-md-12 col-lg-3">
+            <button mat-raised-button class="buttonCA-second" type="button"
+              (click)="openDialogInfoConvenio()">CONVENIOS</button>
+          </div>
+          <div class="col-sm-4 col-md-12 col-lg-3">
+            <button mat-raised-button class="buttonCA primary" [disabled]="registrarAuto.invalid">GUARDAR</button>
+          </div> -->
+        </div>
+      </mat-card>
+    </div>
+
+  </form>
+</div>

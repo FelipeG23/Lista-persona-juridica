@@ -8,18 +8,56 @@ import { environment } from 'src/environments/environment';
 })
 export class PasswordService {
 
-  updatePassword = 'updatePass';
-  uid: "agarcia";
+  sendEmail = 'sendEmailUpdatePassword';
+  allPaginateData = 'allPaginate'
+  createEvaluationData = 'createEvaluation'
+  //uid: "agarcia";
 
   constructor(private http: HttpClient) { }
+
+
 
   changePassword(params: any){
 
 
-    params.uid = 'agarcia';
-    console.log(params);
+    params.userproviderNit = `${params.tipoDocumento}${params.userproviderNit}`;
+    var datos = {
+      userproviderNit: " "
+    };
+    datos.userproviderNit = params.userproviderNit;
 
-    return this.http.put<any>( environment.url + this.updatePassword, params);
+    return this.http.post<any>( environment.url + this.sendEmail, datos);
+
+  }
+
+  allPaginate(params: any){
+
+    return this.http.get<any>( `${environment.url}${this.allPaginateData}?nroPagina=${params}`);
+
+  }
+
+  createEvaluation(params: any) {
+
+    return this.http.post<any>( environment.url + this.createEvaluationData, params);
+
+  }
+
+  datosDataPJ(data){
+
+    return this.http.post(`http://52.247.56.140:8080/getDataPJ`, data);
+  }
+
+  datosDataPN(data){
+
+    return this.http.post(`http://52.247.56.140:8080/getDataPN`, data);
+  }
+
+
+  getEvaluations(data){
+    console.log(data);
+
+
+    return this.http.get(`http://52.247.56.140:8080/getEvaluations?identificacion=${data}`);
 
   }
 

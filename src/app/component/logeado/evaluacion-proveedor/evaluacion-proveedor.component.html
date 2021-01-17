@@ -1,0 +1,546 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-1 offset-sm-11">
+      <!-- <mat-icon (click)="close()">close</mat-icon> -->
+    </div>
+  </div>
+</div>
+<div class="container">
+  <form novalidate (ngSubmit)="onSubmit()" [formGroup]="registrarAuto" #myform="ngForm">
+    <div class="row">
+      <mat-card>
+        <div class="row">
+          <div class="col-sm-11">
+            <h2 mat-dialog-title>Evaluación terceros</h2>
+          </div>
+          <div (click)="close()" style="cursor: default" class="col-sm-1">
+            <mat-icon>close</mat-icon>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-6">
+                <mat-card>
+                  <mat-card-header>
+                    <mat-card-title>Id tercero</mat-card-title>
+                    <mat-card-subtitle>
+                    {{ detalleCita.userProviderNit }}</mat-card-subtitle>
+                  </mat-card-header>
+                </mat-card>
+              </div>
+              <div class="col-sm-12 col-md-12 col-lg-6">
+                <mat-card>
+                  <mat-card-header>
+                    <mat-card-title>Nombre</mat-card-title>
+                    <mat-card-subtitle>{{ detalleCita.userProviderName }} {{ detalleCita.UserProviderLastname }}
+                    </mat-card-subtitle>
+                  </mat-card-header>
+                </mat-card>
+              </div>
+
+              <div class="col-sm-12 col-md-12 col-lg-12 mt-2">
+                <mat-card>
+                <mat-form-field class="w-100">
+                  <mat-label>Descripción bien o servicio que presta</mat-label>
+                  <!-- <textarea [errorStateMatcher]="errorMatcherObservacion" matInput
+                    formControlName="gauObservaciones"></textarea> -->
+
+                    <textarea matInput #messages
+                    formControlName="evalDescripcion"
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"></textarea>
+
+                    <mat-hint align="end">{{messages.value.length}} / 600</mat-hint>
+                    <mat-error *ngIf="registrarAuto.get('evalDescripcion').hasError('required')">
+                      La descripción es requerida!
+                  </mat-error>
+                  <mat-error *ngIf="registrarAuto.get('evalDescripcion').hasError('minlength')">
+                    La longitud del texto excede el mínimo permitido.
+                  </mat-error>
+              <!-- <mat-error *ngIf="registrarAuto.get('gauDescripcion').hasError('maxlength')">
+                    La longitud del texto excede el máximo permitido.
+                  </mat-error>  -->
+                </mat-form-field>
+              </mat-card>
+              </div>
+
+              <div class="col-sm-12 col-md-12 col-lg-12 mt-2">
+                <mat-card>
+                  <div class="row">
+                    <div class="colum col-lg-2">
+                      <div>
+                        <P style="font-size: 16px;"> <strong>  CRITERIO </strong> </P>
+                      </div>
+                      <div class="" style="margin-top: 34px;">
+                        <P style="font-size: 14px;" class="pt-4"> <strong> Cumplimiento  </strong> </P>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-8">
+                      <div class="text-center">
+                        <P style="font-size: 16px;"> <strong> PREGUNTA </strong> </P>
+                      </div>
+                      <div class=" mt-5">
+                        <p style="font-size: 12px;"> ¿Se cumplieron los tiempos de entrega de bienes o la prestación del servicios ofertados por el tercero? </p>
+                      </div>
+                      <div class="mt-2">
+                        <p style="font-size: 12px;"> ¿Se entregan las cantidades solicitadas? </p>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-2">
+                      <div class="text-center">
+                        <P style="font-size: 16px;"> <strong> CALIFICACIÓN  </strong> </P>
+                      </div>
+                      <div class="text-center">
+                        <div class=" mt-2">
+                          <mat-form-field class="" style="width: 80px;">
+                            <mat-label>Calificación</mat-label>
+                            <mat-select  formControlName="evalCumplimiento1">
+                              <mat-option [value]=1>
+                                1
+                              </mat-option>
+                              <mat-option [value]=2>
+                                2
+                              </mat-option>
+                              <mat-option [value]=3>
+                                3
+                              </mat-option>
+                              <mat-option [value]=4>
+                                4
+                              </mat-option>
+                              <mat-option [value]=5>
+                                5
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="registrarAuto.get('evalCumplimiento1').hasError('required')">
+                              Este campo es obligatorio.
+                            </mat-error>
+                          </mat-form-field>
+                         </div>
+                      </div>
+                      <div class="text-center">
+                        <div class=" mt-2">
+                          <mat-form-field class="" style="width: 80px;">
+                            <mat-label>Calificación</mat-label>
+                            <mat-select  formControlName="evalCumplimiento2">
+                              <mat-option [value]=1>
+                                1
+                              </mat-option>
+                              <mat-option [value]=2>
+                                2
+                              </mat-option>
+                              <mat-option [value]=3>
+                                3
+                              </mat-option>
+                              <mat-option [value]=4>
+                                4
+                              </mat-option>
+                              <mat-option [value]=5>
+                                5
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="registrarAuto.get('evalCumplimiento2').hasError('required')">
+                              Este campo es obligatorio.
+                            </mat-error>
+                          </mat-form-field>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+
+
+              <div class="col-sm-12 col-md-12 col-lg-12 mt-2">
+                <mat-card>
+                  <div class="row">
+                    <div class="colum col-lg-2">
+                      <div class="" style="margin-top: 34px;">
+                        <P style="font-size: 14px;" class="pt-4"> <strong> Calidad  </strong> </P>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-8">
+                      <div class=" mt-4">
+                        <p style="font-size: 12px;"> ¿El Bien o servicio cumple con los parametros tecnicos y Normativos? </p>
+                      </div>
+                      <div class="mt-4">
+                        <p style="font-size: 12px;"> ¿El bien o servicio cumple con las especificaciones y requisitos pactados en el momento de entrega? </p>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-2 ">
+                      <div class="text-center">
+                        <div class=" mt-2">
+                          <mat-form-field class="" style="width: 80px;">
+                            <mat-label>Calificación</mat-label>
+                            <mat-select  formControlName="evalCalidad1">
+                              <mat-option [value]=1>
+                                1
+                              </mat-option>
+                              <mat-option [value]=2>
+                                2
+                              </mat-option>
+                              <mat-option [value]=3>
+                                3
+                              </mat-option>
+                              <mat-option [value]=4>
+                                4
+                              </mat-option>
+                              <mat-option [value]=5>
+                                5
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="registrarAuto.get('evalCalidad1').hasError('required')">
+                              Este campo es obligatorio.
+                            </mat-error>
+                          </mat-form-field>
+                         </div>
+                      </div>
+                      <div class="text-center">
+                        <div class=" mt-2">
+                          <mat-form-field class="" style="width: 80px;">
+                            <mat-label>Calificación</mat-label>
+                            <mat-select  formControlName="evalCalidad2">
+                              <mat-option [value]=1>
+                                1
+                              </mat-option>
+                              <mat-option [value]=2>
+                                2
+                              </mat-option>
+                              <mat-option [value]=3>
+                                3
+                              </mat-option>
+                              <mat-option [value]=4>
+                                4
+                              </mat-option>
+                              <mat-option [value]=5>
+                                5
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="registrarAuto.get('evalCalidad2').hasError('required')">
+                              Este campo es obligatorio.
+                            </mat-error>
+                          </mat-form-field>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+
+              <div class="col-sm-12 col-md-12 col-lg-12 mt-2">
+                <mat-card>
+                  <div class="row">
+                    <div class="colum col-lg-2">
+                      <div class="" style="margin-top: 30px;">
+                        <P style="font-size: 14px;" class="pt-4"> <strong> Acompañamiento  </strong> </P>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-8">
+                      <div class=" mt-4">
+                        <p style="font-size: 12px;"> ¿Se han presentado reclamaciones al tercero en calidad o gestión? </p>
+                      </div>
+                      <div class="mt-5">
+                        <p style="font-size: 12px;"> ¿El producto o servicio cuenta con garantias? </p>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-2">
+                      <div class="text-center">
+                        <div class=" mt-2">
+                          <mat-form-field class="" style="width: 80px;">
+                            <mat-label>Calificación</mat-label>
+                            <mat-select  formControlName="evalAcompana1">
+                              <mat-option [value]=1>
+                                1
+                              </mat-option>
+                              <mat-option [value]=2>
+                                2
+                              </mat-option>
+                              <mat-option [value]=3>
+                                3
+                              </mat-option>
+                              <mat-option [value]=4>
+                                4
+                              </mat-option>
+                              <mat-option [value]=5>
+                                5
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="registrarAuto.get('evalAcompana1').hasError('required')">
+                              Este campo es obligatorio.
+                            </mat-error>
+                          </mat-form-field>
+                         </div>
+                      </div>
+                      <div class="text-center">
+                        <div class=" mt-2">
+                          <mat-form-field class="" style="width: 80px;">
+                            <mat-label>Calificación</mat-label>
+                            <mat-select  formControlName="evalAcompana2">
+                              <mat-option [value]=1>
+                                1
+                              </mat-option>
+                              <mat-option [value]=2>
+                                2
+                              </mat-option>
+                              <mat-option [value]=3>
+                                3
+                              </mat-option>
+                              <mat-option [value]=4>
+                                4
+                              </mat-option>
+                              <mat-option [value]=5>
+                                5
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="registrarAuto.get('evalAcompana2').hasError('required')">
+                              Este campo es obligatorio.
+                            </mat-error>
+                          </mat-form-field>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+
+              <div class="col-sm-12 col-md-12 col-lg-12 mt-2">
+                <mat-card>
+                  <div class="row">
+                    <div class="colum col-lg-2">
+                      <div class="" style="margin-top: 120px;">
+                        <P style="font-size: 14px;" class="pt-4"> <strong> Administrativos  </strong> </P>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-8">
+                      <div class=" mt-4">
+                        <p style="font-size: 12px;"> ¿El contrato es suscrito en el tiempo pactado ? </p>
+                      </div>
+                      <div class="mt-5">
+                        <p style="font-size: 12px;"> ¿Las facturas son radicadas en el tiempo indicado con las condiciones y soportes requeridos ? </p>
+                      </div>
+                      <div class="mt-4">
+                        <p style="font-size: 12px;"> ¿En caso de contar con personal de manera temporal o permanente el tercero demuestra el pago de las obligaciones laborales con sus empleados? </p>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-2">
+                      <div class="text-center">
+                        <div class=" mt-2">
+                          <mat-form-field class="" style="width: 80px;">
+                            <mat-label>Calificación</mat-label>
+                            <mat-select  formControlName="evalAdmon1">
+                              <mat-option [value]=1>
+                                1
+                              </mat-option>
+                              <mat-option [value]=2>
+                                2
+                              </mat-option>
+                              <mat-option [value]=3>
+                                3
+                              </mat-option>
+                              <mat-option [value]=4>
+                                4
+                              </mat-option>
+                              <mat-option [value]=5>
+                                5
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="registrarAuto.get('evalAdmon1').hasError('required')">
+                              Este campo es obligatorio.
+                            </mat-error>
+                          </mat-form-field>
+                         </div>
+                      </div>
+                      <div class="text-center">
+                        <div class=" mt-2">
+                          <mat-form-field class="" style="width: 80px;">
+                            <mat-label>Calificación</mat-label>
+                            <mat-select  formControlName="evalAdmon2">
+                              <mat-option [value]=1>
+                                1
+                              </mat-option>
+                              <mat-option [value]=2>
+                                2
+                              </mat-option>
+                              <mat-option [value]=3>
+                                3
+                              </mat-option>
+                              <mat-option [value]=4>
+                                4
+                              </mat-option>
+                              <mat-option [value]=5>
+                                5
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="registrarAuto.get('evalAdmon2').hasError('required')">
+                              Este campo es obligatorio.
+                            </mat-error>
+                          </mat-form-field>
+                         </div>
+                      </div>
+                      <div class="text-center">
+                        <div class=" mt-2">
+                          <mat-form-field class="" style="width: 80px;">
+                            <mat-label>Calificación</mat-label>
+                            <mat-select  formControlName="evalAdmon3">
+                              <mat-option [value]=1>
+                                1
+                              </mat-option>
+                              <mat-option [value]=2>
+                                2
+                              </mat-option>
+                              <mat-option [value]=3>
+                                3
+                              </mat-option>
+                              <mat-option [value]=4>
+                                4
+                              </mat-option>
+                              <mat-option [value]=5>
+                                5
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="registrarAuto.get('evalAdmon3').hasError('required')">
+                              Este campo es obligatorio.
+                            </mat-error>
+                          </mat-form-field>
+                         </div>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-2">
+
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-10">
+                      <mat-form-field class="w-100">
+                        <mat-label>Observaciones</mat-label>
+                        <!-- <textarea [errorStateMatcher]="errorMatcherObservacion" matInput
+                          formControlName="gauObservaciones"></textarea> -->
+
+                          <textarea matInput #messages
+                          formControlName="evalAdmObserva"
+                          cdkTextareaAutosize
+                          cdkAutosizeMinRows="2"
+                          cdkAutosizeMaxRows="5"></textarea>
+
+                          <mat-hint align="end">{{messages.value.length}} / 600</mat-hint>
+                          <mat-error *ngIf="registrarAuto.get('evalAdmObserva').hasError('required')">
+                          Este campo es obligatorio.
+                          </mat-error>
+                        <mat-error *ngIf="registrarAuto.get('evalAdmObserva').hasError('minlength')">
+                          La longitud del texto excede el mínimo permitido.
+                        </mat-error>
+                        <mat-error *ngIf="registrarAuto.get('evalAdmObserva').hasError('maxlength')">
+                          La longitud del texto excede el máximo permitido.
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="colum col-lg-2">
+
+                    </div>
+                    <div class="colum col-lg-7">
+                      <div class=" mt-4">
+                        <p style="font-size: 12px;"> Recomendaria mantener relaciones contractuales con el prveedor evaluado ?  </p>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-3">
+                      <div class=" mt-2">
+                        <mat-form-field class="w-100">
+                          <mat-label>Recomendaria</mat-label>
+                          <mat-select  formControlName="evalAdmRecomienda">
+                            <mat-option value="Si">
+                              Si
+                            </mat-option>
+                            <mat-option value="No">
+                              No
+                            </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="registrarAuto.get('evalAdmRecomienda').hasError('required')">
+                            Este campo es obligatorio.
+                          </mat-error>
+                        </mat-form-field>
+                       </div>
+                    </div>
+
+                  </div>
+                </mat-card>
+              </div>
+
+
+              <div class="col-sm-12 col-md-12 col-lg-12 mt-2">
+                <mat-card>
+                  <div class="text-center">
+                    <p>Datos de quien evalua</p>
+                  </div>
+                  <div class="row">
+                    <div class="colum col-lg-2">
+                      <div class="" style="margin-top: 30px;" class="text-center">
+                        <P style="font-size: 14px;" class="pt-4"> <strong> FSFB  </strong> </P>
+                      </div>
+                    </div>
+                    <div class="colum col-lg-9">
+                      <div class="">
+                        <mat-form-field class="w-100">
+                          <input matInput placeholder="Nombre"  type="text" formControlName="evalFsfbNombre"/>
+                          <mat-error *ngIf="registrarAuto.get('evalFsfbNombre').hasError('required')">
+                            Este campo es obligatorio.
+                          </mat-error>
+                          <mat-error *ngIf="registrarAuto.get('evalFsfbNombre').hasError('maxlength')">
+                            La longitud del texto excede el máximo permitido.
+                          </mat-error>
+                          <mat-error *ngIf="registrarAuto.get('evalFsfbNombre').hasError('minlength')">
+                            La longitud del texto excede el mínimo permitido.
+                          </mat-error>
+                          <mat-error *ngIf="registrarAuto.get('evalFsfbNombre').hasError('pattern')">
+                            El Nombre del evaluador no puede llevar números.
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="">
+                        <mat-form-field class="w-100">
+                          <input matInput placeholder="Cargo"  type="text" formControlName="evalFsfbCargo"/>
+                          <mat-error *ngIf="registrarAuto.get('evalFsfbCargo').hasError('required')">
+                            Este campo es obligatorio.
+                          </mat-error>
+                          <mat-error *ngIf="registrarAuto.get('evalFsfbCargo').hasError('maxlength')">
+                            La longitud del texto excede el máximo permitido.
+                          </mat-error>
+                          <mat-error *ngIf="registrarAuto.get('evalFsfbCargo').hasError('minlength')">
+                            La longitud del texto excede el mínimo permitido.
+                          </mat-error>
+                          <mat-error *ngIf="registrarAuto.get('evalFsfbCargo').hasError('pattern')">
+                            El Nombre del evaluador no puede llevar números.
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <br>
+                    </div>
+                  </div>
+                </mat-card>
+              </div>
+
+            </div>
+          </div>
+
+          <br>  <br>
+
+        <div class="row justify-content-center text-right mb-4">
+          <div class="col-sm-4 col-md-12 col-lg-12">
+            <button mat-raised-button class="buttonCA-second mr-1" type="button" (click)="close()">CANCELAR</button>
+            <button mat-raised-button class="buttonCA primary" [disabled]="registrarAuto.invalid">GUARDAR</button>
+          </div>
+          <!--
+          <div class="col-sm-4 col-md-12 col-lg-3">
+            <button mat-raised-button class="buttonCA-second mr-4" type="button" (click)="limpiar()">LIMPIAR</button>
+          </div>
+          <div class="col-sm-4 col-md-12 col-lg-3">
+            <button mat-raised-button class="buttonCA-second" type="button"
+              (click)="openDialogInfoConvenio()">CONVENIOS</button>
+          </div>
+          <div class="col-sm-4 col-md-12 col-lg-3">
+            <button mat-raised-button class="buttonCA primary" [disabled]="registrarAuto.invalid">GUARDAR</button>
+          </div> -->
+        </div>
+      </mat-card>
+    </div>
+
+  </form>
+</div>
