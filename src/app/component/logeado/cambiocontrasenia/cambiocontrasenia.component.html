@@ -1,90 +1,96 @@
 <div class="container">
 
-<mat-card class="container mt-5 card">
-<div class="container">
+  <mat-card class="container mt-5 card">
+    <div class="container">
 
-  <div class="mt-4">
-    <h1> Lista persona jurídica</h1>
-  </div>
+      <div class="mt-4">
+        <h1>Listado de terceros</h1>
+      </div>
 
-<div class="container mat-elevation-z8 mt-2">
-  <ng-container *ngIf="!dataTerceros">
-    <br>
-    <mat-spinner style="margin: auto" [diameter]="60"></mat-spinner>
-    <br>
-  </ng-container>
-  <table mat-table [dataSource]="dataSource" *ngIf="dataTerceros">
+      <div class="container mat-elevation-z8 mt-2">
+        <ng-container *ngIf="!dataTerceros">
+          <br>
+          <mat-spinner style="margin: auto" [diameter]="60"></mat-spinner>
+          <br>
+        </ng-container>
+       
+        <div fxLayout fxLayoutAlign="center center">
+          <mat-form-field fxFlex="100%">
+           
+            <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filtrar">
 
-
-    <!-- userProviderNit Column -->
-    <ng-container matColumnDef="userProviderNit">
-      <th class="text-center" mat-header-cell *matHeaderCellDef> Id proveedor </th>
-      <td class="text-center" mat-cell *matCellDef="let element"> {{element.userProviderNit}} </td>
-    </ng-container>
-
-    <!-- userProviderName Column -->
-    <ng-container matColumnDef="userProviderName">
-      <th class="text-center" mat-header-cell *matHeaderCellDef> Nombres </th>
-      <td class="text-center" mat-cell *matCellDef="let element"> {{element.userProviderName}} </td>
-    </ng-container>
-
-     <!-- UserProviderLastname Column -->
-     <ng-container matColumnDef="UserProviderLastname">
-      <th class="text-center" mat-header-cell *matHeaderCellDef> Apellidos </th>
-      <td class="text-center" mat-cell *matCellDef="let element"> {{element.UserProviderLastname}} </td>
-    </ng-container>
-
-     <!-- providertypeId Column -->
-     <ng-container matColumnDef="providertypeId">
-      <th class="text-center" mat-header-cell *matHeaderCellDef> Tipo persona </th>
-      <td class="text-center" mat-cell *matCellDef="let element"> {{element.providertypeId}} </td>
-    </ng-container>
-
-    <!-- userProviderEmail Column -->
-    <ng-container matColumnDef="userProviderEmail">
-      <th class="text-center" mat-header-cell *matHeaderCellDef> Correo electronico </th>
-      <td class="text-center" mat-cell *matCellDef="let element"> {{element.userProviderEmail}} </td>
-    </ng-container>
+            <span class="input-group-append" style="float:right;display: inline;margin-top: -19px;">
+                <i class="material-icons md-18" style="color: black">search</i>
+              </span>
+          </mat-form-field>
+          
+        </div>
+        
+        <table mat-table [dataSource]="dataSource" *ngIf="dataTerceros">
 
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <th class="text-center" mat-header-cell *matHeaderCellDef> Evaluar </th>
-      <td class="text-center" mat-cell *matCellDef="let element">
-        <p type="button" (click)="openDialogAutorizacion(element)" mat-raised-button class="pt-2" style="background-color: rgba(255, 255, 255, 0); color: rgba(255, 255, 255, 0); cursor: pointer;">
-          <i class="material-icons md-18" style="color: black;">done</i>
-        </p>
-      </td>
-    </ng-container>
+          <!-- userProviderNit Column -->
+          <ng-container matColumnDef="userProviderNit">
+            <th class="text-center" mat-header-cell *matHeaderCellDef> Id proveedor </th>
+            <td class="text-center" mat-cell *matCellDef="let element"> {{element.userProviderNit}} </td>
+          </ng-container>
+
+          <!-- userProviderName Column -->
+          <ng-container matColumnDef="userProviderName">
+            <th class="text-center" mat-header-cell *matHeaderCellDef> Nombres / Razón Social </th>
+            <td class="text-center" mat-cell *matCellDef="let element">{{element.userproviderLastname}}  {{element.userProviderName}}    </td>
+          </ng-container>
 
 
-     <!-- evaluationData Column -->
-     <ng-container matColumnDef="evaluationData">
-      <th class="text-center" mat-header-cell *matHeaderCellDef> Evaluación </th>
-      <td class="text-center" mat-cell *matCellDef="let element">
-        <p type="button" (click)="openDialogListaEvaluaciones(element)" mat-raised-button class="pt-2" style="background-color: rgba(255, 255, 255, 0); color: rgba(255, 255, 255, 0); cursor: pointer;">
-          <i class="material-icons md-18" style="color: black;">assignment</i>
-        </p>
-      </td>
-    </ng-container>
+          <!-- providertypeId Column -->
+          <ng-container matColumnDef="providertypeId">
+            <th class="text-center" mat-header-cell *matHeaderCellDef> Tipo persona </th>
+            <td class="text-center" mat-cell *matCellDef="let element"> {{element.userprovider_type}} </td>
+          </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+          <!-- userProviderEmail Column -->
+          <ng-container matColumnDef="userProviderEmail">
+            <th class="text-center" mat-header-cell *matHeaderCellDef> Correo eléctronico </th>
+            <td class="text-center" mat-cell *matCellDef="let element"> {{element.userProviderEmail}} </td>
+          </ng-container>
 
-  <!--
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="symbol">
+            <th class="text-center" mat-header-cell *matHeaderCellDef> Evaluar </th>
+            <td class="text-center" mat-cell *matCellDef="let element">
+              <p type="button" (click)="openDialogAutorizacion(element)" mat-raised-button class="pt-2"
+                style="background-color: rgba(255, 255, 255, 0); color: rgba(255, 255, 255, 0); cursor: pointer;">
+                <i class="material-icons md-18" style="color: black;">done</i>
+              </p>
+            </td>
+          </ng-container>
+
+
+          <!-- evaluationData Column -->
+          <ng-container matColumnDef="evaluationData">
+            <th class="text-center" mat-header-cell *matHeaderCellDef> Evaluación </th>
+            <td class="text-center" mat-cell *matCellDef="let element">
+              <p type="button" (click)="openDialogListaEvaluaciones(element)" mat-raised-button class="pt-2"
+                style="background-color: rgba(255, 255, 255, 0); color: rgba(255, 255, 255, 0); cursor: pointer;">
+                <i class="material-icons md-18" style="color: black;">assignment</i>
+              </p>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <!--
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   -->
 
-  <mat-paginator #paginatorCitas [pageSizeOptions]="pageSizeOptions"
-                 [length]="length"
-                 [pageSize]="pageSize"
-                 [pageSizeOptions]="pageSizeOptions"
-                 (page)=setPageSizeOptions($event)
-                 showFirstLastButtons>></mat-paginator>
-</div>
-</div>
-<br> <br>
+        <mat-paginator #paginatorCitas [pageSizeOptions]="pageSizeOptions" [length]="length" [pageSize]="pageSize"
+          [pageSizeOptions]="pageSizeOptions" (page)=setPageSizeOptions($event) showFirstLastButtons>></mat-paginator>
+      </div>
+    </div>
+    <br> <br>
 
-</mat-card>
+  </mat-card>
 </div>

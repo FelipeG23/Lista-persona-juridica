@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PeriodicElement } from '../../../models/PeriodicElement';
-import swal from 'sweetalert';
+import swal from 'sweetalert2'
+
 import { PasswordService } from 'src/app/service/changePassword/password.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
@@ -89,7 +90,7 @@ export class EvaluacionProveedorComponent implements OnInit {
 
           if (error.status ===  200 || error.status ===  201 || error.status ===  202 ) {
 
-            swal({
+            swal.fire({
                title: 'Evaluación',
                text: 'Registro de evaluación creada correctamente.',
                icon: 'success',
@@ -100,7 +101,7 @@ export class EvaluacionProveedorComponent implements OnInit {
 
            } else {
 
-             swal({
+             swal.fire({
                title: 'Evaluación',
                text: 'Comuniquese con el administrador',
                icon: 'error',
@@ -111,7 +112,7 @@ export class EvaluacionProveedorComponent implements OnInit {
 
     } else {
 
-      swal({
+      swal.fire({
         title: 'Error',
         text: 'El formulario debe estar diligenciado correctamente',
         icon: 'error',

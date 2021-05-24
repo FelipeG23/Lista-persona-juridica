@@ -31,8 +31,7 @@ export class PasswordService {
   }
 
   allPaginate(params: any){
-
-    return this.http.get<any>( `${environment.url}${this.allPaginateData}?nroPagina=${params}`);
+    return this.http.get<any>( `${environment.url}${this.allPaginateData}?nroPagina=${params.pageNumber}&mostrar=${params.mostrar}`);
 
   }
 

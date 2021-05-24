@@ -5,7 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { PasswordService } from 'src/app/service/changePassword/password.service';
 import { EvaluacionProveedorComponent } from '../logeado/evaluacion-proveedor/evaluacion-proveedor.component';
-import swal from 'sweetalert';
+import swal from 'sweetalert2'
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatosEvaluacionComponent } from '../datos-evaluacion/datos-evaluacion.component';
 
@@ -102,7 +103,7 @@ export class ListaEvaluacionesComponent implements OnInit {
 
       }, err => {
         // this.spinnerService.hide();
-        swal({
+        swal.fire({
           title: 'Error',
           text: 'Error registrando la autorización, por favor intente nuevamente',
           icon: 'warning',

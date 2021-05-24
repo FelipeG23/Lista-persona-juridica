@@ -5,7 +5,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { PeriodicElement } from 'src/app/models/PeriodicElement';
 import { PasswordService } from 'src/app/service/changePassword/password.service';
 import { EvaluacionProveedorComponent } from '../logeado/evaluacion-proveedor/evaluacion-proveedor.component';
-import swal from 'sweetalert';
+import swal from 'sweetalert2'
+
 
 
 
@@ -104,7 +105,7 @@ export class DatosEvaluacionComponent implements OnInit {
 
           if (error.status ===  200 || error.status ===  201 || error.status ===  202 ) {
 
-            swal({
+            swal.fire({
                title: 'Evaluación',
                text: 'Registro de evaluación creada correctamente.',
                icon: 'success',
@@ -115,7 +116,7 @@ export class DatosEvaluacionComponent implements OnInit {
 
            } else {
 
-             swal({
+             swal.fire({
                title: 'Evaluación',
                text: 'Comuniquese con el administrador',
                icon: 'error',
@@ -126,7 +127,7 @@ export class DatosEvaluacionComponent implements OnInit {
 
     } else {
 
-      swal({
+      swal.fire({
         title: 'Error',
         text: 'El formulario debe estar diligenciado correctamente',
         icon: 'error',
